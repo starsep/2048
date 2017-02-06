@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour {
 			}
 			for (int y = 0; y < size; y++) {
 				for (int x = 0; x < size; x++) {
-					value[y, x] = (x + y) % 12;
+					value[y, x] = (size * x + y) % 12;
 				}
 			}
 		}
@@ -67,6 +67,9 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update() {
-		grid.Update ();
+		int x = generator.Next () % size;
+		int y = generator.Next () % size;
+		grid.renderer [y, x].enabled = !grid.renderer [y, x].enabled;
+ 		// grid.Update ();
 	}
 }
