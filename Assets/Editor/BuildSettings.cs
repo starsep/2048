@@ -3,12 +3,15 @@ using UnityEditor;
 using System.Collections;
 
 class BuildSettings : MonoBehaviour {
+	private const string VERSION = "v0.01";
+
 	private static string[] levels = new string[] {
 		"Assets/Scenes/Game.unity"
 	};
 
-	private static void Build (string name, string path, BuildTarget target) {
+	private static void Build (string platform, BuildTarget target, string extension = "") {
 		UnityEditor.PlayerSettings.runInBackground = false;
+		string path = "./Build/2048-" + platform + "-" + VERSION + "/2048" + extension;
 		string message = BuildPipeline.BuildPlayer (
 			                 levels,
 			                 path,
@@ -16,40 +19,40 @@ class BuildSettings : MonoBehaviour {
 			                 BuildOptions.None);
 
 		if (string.IsNullOrEmpty (message)) {
-			UnityEngine.Debug.Log (name + " build complete");
+			UnityEngine.Debug.Log (platform + " build complete");
 		} else {
-			UnityEngine.Debug.LogError ("Error building " + name + ":\n" + message);
+			UnityEngine.Debug.LogError ("Error building " + platform + ":\n" + message);
 		}
 	}
 
 	[MenuItem ("Build/Linux32")]
 	public static void BuildLinux32 () {
-		Build ("Linux32", "./Build/Linux32/2048", BuildTarget.StandaloneLinux);
+		Build ("Linux32", BuildTarget.StandaloneLinux);
 	}
 
 	[MenuItem ("Build/Linux64")]
 	public static void BuildLinux64 () {
-		Build ("Linux64", "./Build/Linux64/2048", BuildTarget.StandaloneLinux64);
+		Build ("Linux64", BuildTarget.StandaloneLinux64);
 	}
 
 	[MenuItem ("Build/Win32")]
 	public static void BuildWin32 () {
-		Build ("Win32", "./Build/Win32/2048.exe", BuildTarget.StandaloneWindows);
+		Build ("Win32", BuildTarget.StandaloneWindows, ".exe");
 	}
 
 	[MenuItem ("Build/Win64")]
 	public static void BuildWin64 () {
-		Build ("Win64", "./Build/Win64/2048.exe", BuildTarget.StandaloneWindows64);
+		Build ("Win64", BuildTarget.StandaloneWindows64, ".exe");
 	}
 
 	[MenuItem ("Build/Android")]
 	public static void BuildAndroid () {
-		Build ("Android", "./Build/Android/2048", BuildTarget.Android);
+		Build ("Android", BuildTarget.Android);
 	}
 
 	[MenuItem ("Build/WebGL")]
 	public static void BuildWebGL () {
-		Build ("WebGL", "./Build/WebGL/2048", BuildTarget.WebGL);
+		Build ("WebGL", BuildTarget.WebGL);
 	}
 
 	[MenuItem ("Build/All")]
