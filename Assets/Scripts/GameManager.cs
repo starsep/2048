@@ -38,7 +38,10 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void TouchEvents () {
-		if (Input.touchCount > 0 && Input.GetTouch (0).phase == TouchPhase.Began) {
+		if (Input.touchCount == 0) {
+			return;
+		}
+		if (Input.GetTouch (0).phase == TouchPhase.Began) {
 			touchStartPosition = Input.GetTouch (0).position;
 		}
 		if (Input.GetTouch (0).phase == TouchPhase.Ended) {
@@ -61,9 +64,7 @@ public class GameManager : MonoBehaviour {
 
 	void Update () {
 		InputEvents ();
-		#if UNITY_ANDROID || UNITY_IOS || UNITY_WP8 || UNITY_WP8_1
 		TouchEvents ();
-		#endif
 		grid.Update ();
 	}
 }
