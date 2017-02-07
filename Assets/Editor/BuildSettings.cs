@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using System.Collections;
+using System.IO;
 
 class BuildSettings : MonoBehaviour {
 	private const string VERSION = "v0.01";
@@ -9,15 +10,16 @@ class BuildSettings : MonoBehaviour {
 		"Assets/Scenes/Game.unity"
 	};
 
-	private static void Build (string platform, BuildTarget target, string extension = "") {
-		UnityEditor.PlayerSettings.runInBackground = false;
-		string path = "./Build/2048-" + platform + "-" + VERSION + "/2048" + extension;
-		string message = BuildPipeline.BuildPlayer (
-			                 levels,
-			                 path,
-			                 target,
-			                 BuildOptions.None);
+	private static string DirectoryName(string platform) {
+		return "2048-" + platform + "-" + VERSION;
+	}
 
+	private static void Build (string platform, BuildTarget target, string extension = "", string filename = "2048") {
+		UnityEditor.PlayerSettings.runInBackground = false;
+		string directory = DirectoryName (platform);
+		char separator = Path.DirectorySeparatorChar;
+		string path = "." + separator + "Build" + separator + directory + separator + filename + extension;
+		string message = BuildPipeline.BuildPlayer (levels, path, target, BuildOptions.None);
 		if (string.IsNullOrEmpty (message)) {
 			UnityEngine.Debug.Log (platform + " build complete");
 		} else {
@@ -47,7 +49,7 @@ class BuildSettings : MonoBehaviour {
 
 	[MenuItem ("Build/Android")]
 	public static void BuildAndroid () {
-		Build ("Android", BuildTarget.Android);
+		Build ("Android", BuildTarget.Android, ".apk", DirectoryName("Android"));
 	}
 
 	[MenuItem ("Build/WebGL")]
