@@ -1,24 +1,24 @@
-function UnityProgress(gameObject, progress) {
-  if (!gameObject.Module)
+function UnityProgress(gameInstance, progress) {
+  if (!gameInstance.Module)
     return;
-  if (!gameObject.logo) {
-    gameObject.logo = document.createElement("div");
-    gameObject.logo.className = "logo " + gameObject.Module.splashScreenStyle;
-    gameObject.container.appendChild(gameObject.logo);
+  if (!gameInstance.logo) {
+    gameInstance.logo = document.createElement("div");
+    gameInstance.logo.className = "logo " + gameInstance.Module.splashScreenStyle;
+    gameInstance.container.appendChild(gameInstance.logo);
   }
-  if (!gameObject.progress) {    
-    gameObject.progress = document.createElement("div");
-    gameObject.progress.className = "progress " + gameObject.Module.splashScreenStyle;
-    gameObject.progress.empty = document.createElement("div");
-    gameObject.progress.empty.className = "empty";
-    gameObject.progress.appendChild(gameObject.progress.empty);
-    gameObject.progress.full = document.createElement("div");
-    gameObject.progress.full.className = "full";
-    gameObject.progress.appendChild(gameObject.progress.full);
-    gameObject.container.appendChild(gameObject.progress);
+  if (!gameInstance.progress) {    
+    gameInstance.progress = document.createElement("div");
+    gameInstance.progress.className = "progress " + gameInstance.Module.splashScreenStyle;
+    gameInstance.progress.empty = document.createElement("div");
+    gameInstance.progress.empty.className = "empty";
+    gameInstance.progress.appendChild(gameInstance.progress.empty);
+    gameInstance.progress.full = document.createElement("div");
+    gameInstance.progress.full.className = "full";
+    gameInstance.progress.appendChild(gameInstance.progress.full);
+    gameInstance.container.appendChild(gameInstance.progress);
   }
-  gameObject.progress.full.style.width = (100 * progress) + "%";
-  gameObject.progress.empty.style.width = (100 * (1 - progress)) + "%";
+  gameInstance.progress.full.style.width = (100 * progress) + "%";
+  gameInstance.progress.empty.style.width = (100 * (1 - progress)) + "%";
   if (progress == 1)
-    gameObject.logo.style.display = gameObject.progress.style.display = "none";
+    gameInstance.logo.style.display = gameInstance.progress.style.display = "none";
 }
