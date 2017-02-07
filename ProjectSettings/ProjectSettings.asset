@@ -215,8 +215,8 @@ PlayerSettings:
   AndroidTargetDevice: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: 
-  AndroidKeyaliasName: 
+  AndroidKeystoreName: /home/starsep/.android/keystores/2048.jks
+  AndroidKeyaliasName: 2048
   AndroidTVCompatibility: 1
   AndroidIsGame: 1
   androidEnableBanner: 1
@@ -230,7 +230,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 0}
+      m_Icon: {fileID: 2800000, guid: 9783f651dbdef43d6a474cd9eadd0745, type: 3}
       m_Width: 128
       m_Height: 128
   m_BuildTargetBatching: []
