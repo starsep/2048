@@ -1,9 +1,8 @@
 language: objective-c
 os: osx
 before_install:
-    - chmod +x ./travis/install.sh
-    - chmod +x ./travis/build.sh
+    - chmod -R a+x ./travis
 install:
     - ./travis/install.sh
-build:
+script:
     - ./travis/build.sh
