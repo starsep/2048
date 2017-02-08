@@ -67,4 +67,8 @@ public class GameManager : MonoBehaviour {
 		TouchEvents ();
 		grid.Update ();
 	}
+
+	public void ResetLevel() {
+		grid.Reset ();
+	}
 }
