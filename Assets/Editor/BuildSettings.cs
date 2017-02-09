@@ -5,16 +5,17 @@ using System.IO;
 
 class BuildSettings : MonoBehaviour {
 	private const string VERSION = "v0.2.0";
+	private const string PROJECT_NAME = "2048";
 
 	private static string[] levels = new string[] {
 		"Assets/Scenes/Game.unity"
 	};
 
 	private static string DirectoryName(string platform) {
-		return "2048-" + platform + "-" + VERSION;
+		return PROJECT_NAME + "-" + platform + "-" + VERSION;
 	}
 
-	private static void Build (string platform, BuildTarget target, string extension = "", string filename = "2048") {
+	private static void Build (string platform, BuildTarget target, string extension = "", string filename = PROJECT_NAME) {
 		UnityEditor.PlayerSettings.runInBackground = false;
 		string directory = DirectoryName (platform);
 		char separator = Path.DirectorySeparatorChar;
