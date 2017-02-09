@@ -4,7 +4,7 @@ using System.Collections;
 using System.IO;
 
 class BuildSettings : MonoBehaviour {
-	private const string VERSION = "v0.1.0";
+	private const string VERSION = "v0.2.0";
 
 	private static string[] levels = new string[] {
 		"Assets/Scenes/Game.unity"
