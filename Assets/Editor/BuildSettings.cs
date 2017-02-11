@@ -37,7 +37,7 @@ namespace Editor {
     }
 
     public class BuildSettings : MonoBehaviour {
-        private const string Version = "v0.2.0";
+        private const string BuildMenuPrefix = "Build/";
         private const string ProjectName = "2048";
         public const string Directory = "Build";
         private const string GithubPagesDirectory = "docs";
@@ -47,7 +47,7 @@ namespace Editor {
         };
 
         private static string DirectoryName(string platform) {
-            return ProjectName + "-" + platform + "-" + Version;
+            return ProjectName + "-" + platform + "-" + Versioning.Version();
         }
 
         private static string DirectoryName(BuildTarget target) {
@@ -177,37 +177,37 @@ namespace Editor {
             }
         }
 
-        [MenuItem("Build/Linux32")]
+        [MenuItem(BuildMenuPrefix + "Linux32")]
         public static void BuildLinux32() {
             Build(BuildTarget.StandaloneLinux, ActionAfterBuild.Tar);
         }
 
-        [MenuItem("Build/Linux64")]
+        [MenuItem(BuildMenuPrefix + "Linux64")]
         public static void BuildLinux64() {
             Build(BuildTarget.StandaloneLinux64, ActionAfterBuild.Tar);
         }
 
-        [MenuItem("Build/Win32")]
+        [MenuItem(BuildMenuPrefix + "Win32")]
         public static void BuildWin32() {
             Build(BuildTarget.StandaloneWindows, ActionAfterBuild.Zip);
         }
 
-        [MenuItem("Build/Win64")]
+        [MenuItem(BuildMenuPrefix + "Win64")]
         public static void BuildWin64() {
             Build(BuildTarget.StandaloneWindows64, ActionAfterBuild.Zip);
         }
 
-        [MenuItem("Build/Android")]
+        [MenuItem(BuildMenuPrefix + "Android")]
         public static void BuildAndroid() {
             Build(BuildTarget.Android, ActionAfterBuild.MoveApk);
         }
 
-        [MenuItem("Build/WebGL")]
+        [MenuItem(BuildMenuPrefix + "WebGL")]
         public static void BuildWebGl() {
             Build(BuildTarget.WebGL, ActionAfterBuild.MoveDirDeployAndZip);
         }
 
-        [MenuItem("Build/All")]
+        [MenuItem(BuildMenuPrefix + "All")]
         public static void BuildAll() {
             BuildLinux32();
             BuildLinux64();
