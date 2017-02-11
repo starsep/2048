@@ -387,7 +387,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8889d37c7e6c9404384c806e3ada0d5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileSprites:
+  TileSprites:
   - {fileID: 21300000, guid: 5e8c2137ff3f546ce808752410fbf0b2, type: 3}
   - {fileID: 21300002, guid: 5e8c2137ff3f546ce808752410fbf0b2, type: 3}
   - {fileID: 21300004, guid: 5e8c2137ff3f546ce808752410fbf0b2, type: 3}
@@ -400,7 +400,7 @@ MonoBehaviour:
   - {fileID: 21300018, guid: 5e8c2137ff3f546ce808752410fbf0b2, type: 3}
   - {fileID: 21300020, guid: 5e8c2137ff3f546ce808752410fbf0b2, type: 3}
   - {fileID: 21300022, guid: 5e8c2137ff3f546ce808752410fbf0b2, type: 3}
-  mainCamera: {fileID: 1900007334}
+  MainCamera: {fileID: 1900007334}
 --- !u!4 &815965713
 Transform:
   m_ObjectHideFlags: 0
