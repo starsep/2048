@@ -4,6 +4,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
     public Sprite[] TileSprites;
     public Camera MainCamera;
+    public Canvas GridCanvas;
 
     private Vector2 _touchStartPosition = Vector2.zero;
     private Grid _grid;
@@ -15,7 +16,7 @@ public class GameManager : MonoBehaviour {
     private void Start() {
         const float center = Size / 2f - 0.5f;
         MainCamera.transform.position = new Vector3(center, center, -10.0f);
-        _grid = new Grid(Size, TileSprites);
+        _grid = new Grid(Size, TileSprites, GridCanvas);
     }
 
     private void InputEvents() {

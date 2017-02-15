@@ -9,6 +9,7 @@ public class Grid {
     private readonly System.Random _generator;
 
     private readonly Sprite[] _tileSprites;
+    private readonly Canvas _gridCanvas;
     private readonly SpriteRenderer[,] _renderer;
     private readonly int[,] _value;
     private int[,] _lastValue;
@@ -17,6 +18,7 @@ public class Grid {
     private void InitTile(int x, int y) {
         _value[y, x] = Empty;
         var newTile = new GameObject("Tile[" + y + "," + x + "]");
+        newTile.transform.parent = _gridCanvas.transform;
         newTile.transform.position = new Vector3(x, y, 1.0f);
         _renderer[y, x] = newTile.AddComponent<SpriteRenderer>();
         _renderer[y, x].sprite = _tileSprites[0];
@@ -51,12 +53,13 @@ public class Grid {
         _value[y, x] = _generator.Next() % 2;
     }
 
-    public Grid(int size, Sprite[] tileSprites) {
+    public Grid(int size, Sprite[] tileSprites, Canvas gridCanvas) {
         _generator = new System.Random();
         _tileSprites = tileSprites;
         _size = size;
         _value = new int[size, size];
         _renderer = new SpriteRenderer[size, size];
+        _gridCanvas = gridCanvas;
         for (var y = 0; y < size; y++) {
             for (var x = 0; x < size; x++) {
                 InitTile(y, x);
