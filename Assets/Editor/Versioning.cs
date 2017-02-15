@@ -1,6 +1,4 @@
-﻿using System;
-using ICSharpCode.SharpZipLib.Zip;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 
 namespace Editor {
