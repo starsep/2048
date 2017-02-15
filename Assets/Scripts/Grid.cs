@@ -149,4 +149,16 @@ public class Grid {
         AddRandom();
         AddRandom();
     }
+
+    private bool GameOver() {
+        for (var x1 = 0; x1 < _size - 1; x1++) {
+            for (var y1 = 0; y1 < _size - 1; y1++) {
+                if (_value[y1, x1] == _value[y1, x1 + 1] ||
+                    _value[y1, x1] == _value[y1 + 1, x1]) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 }
