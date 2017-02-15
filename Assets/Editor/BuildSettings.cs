@@ -47,7 +47,7 @@ namespace Editor {
         };
 
         private static string DirectoryName(string platform) {
-            return ProjectName + "-" + platform + "-" + Versioning.Version();
+            return ProjectName + "-" + platform + "-v" + Versioning.Version();
         }
 
         private static string DirectoryName(BuildTarget target) {
