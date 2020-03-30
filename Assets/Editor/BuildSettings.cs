@@ -1,13 +1,12 @@
 ﻿using System.IO;
 using UnityEditor;
 using UnityEngine;
+using UnityEditor.Build.Reporting;
 
 namespace Editor {
     public static class BuildTargetExtension {
         public static string Name(this BuildTarget target) {
             switch (target) {
-                case BuildTarget.StandaloneLinux:
-                    return "Linux32";
                 case BuildTarget.StandaloneLinux64:
                     return "Linux64";
                 case BuildTarget.StandaloneWindows:
@@ -82,13 +81,15 @@ namespace Editor {
             var platform = target.Name();
             var directory = DirectoryName(platform);
             var path = Directory + separator + directory + separator + ProjectName + target.Extension();
-            var message = BuildPipeline.BuildPlayer(Levels, path, target, BuildOptions.None);
-            if (string.IsNullOrEmpty(message)) {
+            var buildReport = BuildPipeline.BuildPlayer(Levels, path, target, BuildOptions.None);
+            var buildSummary = buildReport.summary;
+            var buildResult = buildSummary.result;
+            if (buildResult == BuildResult.Succeeded) {
                 Debug.Log(platform + " build complete");
                 MakeAction(action, target);
             }
             else {
-                Debug.LogError("Error building " + platform + ":\n" + message);
+                Debug.LogError("Error building " + platform + ":\n" + buildSummary.ToString());
             }
         }
 
@@ -177,11 +178,6 @@ namespace Editor {
             }
         }
 
-        [MenuItem(BuildMenuPrefix + "Linux32")]
-        public static void BuildLinux32() {
-            Build(BuildTarget.StandaloneLinux, ActionAfterBuild.Tar);
-        }
-
         [MenuItem(BuildMenuPrefix + "Linux64")]
         public static void BuildLinux64() {
             Build(BuildTarget.StandaloneLinux64, ActionAfterBuild.Tar);
@@ -209,7 +205,6 @@ namespace Editor {
 
         [MenuItem(BuildMenuPrefix + "All")]
         public static void BuildAll() {
-            BuildLinux32();
             BuildLinux64();
             BuildWin32();
             BuildWin64();
